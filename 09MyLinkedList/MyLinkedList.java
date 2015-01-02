@@ -158,7 +158,7 @@ public class MyLinkedList implements Iterable<Integer>{
 	return printVer;
     }
 
-    public Iterator<Integer> iterator(){
+    public LinkedListIterator iterator(){
 	return new LinkedListIterator(this, start);
     }
 
@@ -208,10 +208,7 @@ public class MyLinkedList implements Iterable<Integer>{
 	}
  
 	public boolean hasNext(){
-	    if(list.start == null){
-		return false;
-	    }
-	    if(!(current.equals(list.end))){
+	    if(list.start != null && current != null){
 		return true;
 	    }else{
 		return false;
@@ -219,11 +216,13 @@ public class MyLinkedList implements Iterable<Integer>{
 	}
 
 	public Integer next(){
-	    return null;
+	    Integer TBR = new Integer(current.value);
+	    current = current.next;
+	    return TBR;
 	}
 
 	public void remove(){
-
+	    throw new UnsupportedOperationException("Optional implementation");
 	}
     }
 
@@ -250,5 +249,13 @@ public class MyLinkedList implements Iterable<Integer>{
 	    test0.remove(i);
 	    System.out.println(test0);
 	}
+	LinkedListIterator it = test0.iterator();
+	while(it.hasNext()){
+	    System.out.print(it.next() + ", ");
+	}
+	for(Integer element : test0){
+	    System.out.print(element + ", ");
+	}
+	
     }
 }
