@@ -19,16 +19,24 @@ public class QueenBoard{
 
     //!------------------------------------------------------------------------
     private boolean newQNoConflict(int row, int col){
-	boolean valid = true;
-	/*for(int c = 0; c < col; c++){
-	    if(){
-
+	for(int c = 0; c < col; c++){
+	    if(board[row][c] == 1){
+		return false;
 	    }
-	    }*/
-	return valid;
+	}
+	for(int c = col - 1, r = row - 1; c >= 0 && r >= 0; c--, r--){
+	    if(board[r][c] == 1){
+		return false;
+	    }
+	}
+	for(int c = col - 1; c >= 0 && row + col - c < board.length; c--){
+	    if(board[row + col - c][c] == 1){
+		return false;
+	    }
+	}
+	return true;
     }
 
-    //!---------------------------------
     private boolean solveH(int col){
         if(col >= board.length){
 	    return true;
@@ -60,16 +68,15 @@ public class QueenBoard{
     public int getSolutionCount(){
     	return solutionCount;
     }
-
-    //!------------------------------------------------------------------------
+    
     public String toString(){
     	String boardInPrint = "";
 	for(int row = 0; row < board.length; row++){
 	    for(int col = 0; col < board.length; col++){
 		if(board[row][col] == 1){
-		    boardInPrint += 'Q';
+		    boardInPrint += "Q ";
 		}else{
-		    boardInPrint += '_';
+		    boardInPrint += "_ ";
 		}
 	    }
 	    boardInPrint += '\n';
@@ -80,7 +87,10 @@ public class QueenBoard{
 
 
     public static void main(String[] args){
-	QueenBoard board4 = new QueenBoard(4);
-	System.out.println(board4);
+	QueenBoard board20 = new QueenBoard(20);
+	System.out.println(board20);
+	//board4.addQueen(0,1);
+	board20.solve();
+	System.out.println(board20);
     }
 }
