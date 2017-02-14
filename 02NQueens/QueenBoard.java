@@ -17,7 +17,6 @@ public class QueenBoard{
 	board[r][c] = 0;
     }
 
-    //!------------------------------------------------------------------------
     private boolean newQNoConflict(int row, int col){
 	for(int c = 0; c < col; c++){
 	    if(board[row][c] == 1){
@@ -59,11 +58,39 @@ public class QueenBoard{
 	solveH(0);
     }
 
-    /*//!----------------------------------------------------------------------
-    public void countSolutions(){
-
+    //strangely does its job, but leaves the board in a weird form. Clear it instead?
+    private boolean countSolutionsH(int col){
+        if(col >= board.length){
+	    return true;
+	}else{
+	    for(int row = 0; row < board.length; row++){
+		if(newQNoConflict(row, col)){
+		    addQueen(row, col);
+		    if(countSolutionsH(col + 1)){
+		        solutionCount++;
+			//return true;
+		    }else{
+			removeQueen(row, col);
+		    }
+		}
+	    }
+	    return false;
+	}
     }
-    */
+
+    private void clearBoard(){
+	for(int row = 0; row < board.length; row++){
+	    for(int col = 0; col < board.length; col++){
+		board[row][col] = 0;
+	    }
+	}
+    }
+
+    public void countSolutions(){
+	solutionCount = 0;
+        countSolutionsH(0);
+        clearBoard();
+    }
 
     public int getSolutionCount(){
     	return solutionCount;
@@ -74,9 +101,9 @@ public class QueenBoard{
 	for(int row = 0; row < board.length; row++){
 	    for(int col = 0; col < board.length; col++){
 		if(board[row][col] == 1){
-		    boardInPrint += "Q ";
+		    boardInPrint += "Q"; //may need to omit clarity-space in end product
 		}else{
-		    boardInPrint += "_ ";
+		    boardInPrint += "_"; //may need to omit clarity-space in end product
 		}
 	    }
 	    boardInPrint += '\n';
@@ -87,10 +114,14 @@ public class QueenBoard{
 
 
     public static void main(String[] args){
-	QueenBoard board20 = new QueenBoard(20);
+	/*QueenBoard board20 = new QueenBoard(20);
 	System.out.println(board20);
 	//board4.addQueen(0,1);
 	board20.solve();
 	System.out.println(board20);
+	QueenBoard board10 = new QueenBoard(10);
+	board10.countSolutions();
+	System.out.println(board10.getSolutionCount());
+	System.out.println(board10);*/
     }
 }
