@@ -24,9 +24,9 @@ public class KnightBoard{
 		    return printedBoard;
 		    //return "unsolved/no solution";
 		}else if(board[row][col] / 10 == 0){
-		    printedBoard += " " + board[row][col];
+		    printedBoard += " " + board[row][col] + " ";
 		}else{
-		    printedBoard += board[row][col];
+		    printedBoard += board[row][col] + " ";
 		}
 	    }
 	}
