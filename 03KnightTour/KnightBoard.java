@@ -5,9 +5,37 @@ public class KnightBoard{
 	board = new int[startingRows][startingCols];
     }
 
+    private void addKnight(int row, int col, int level){
+	board[row][col] = level;
+    }
+
+    private void removeKnight(int row, int col, int level){
+	board[row][col] = 0;
+    }
+
     /*
+    private int[] moves(){
+	return {1, 2, 2, 1, 2, -1, 1, -2, -1, -2, -2, -1, -2, 1, -1, 2};
+    }
+    
     private boolean solveH(int row ,int col, int level){
-	
+	if(level > board.length * board[0].length){
+	    return true;
+	}else if(level == 1){
+	    for(int r = 0; r < board.length; r++){
+		for(int c = 0; c < board[0].length; c++){
+		    addKnight(r, c, level);
+		    if(solveH(r, c, level + 1)){
+			return true;
+		    }else{
+			removeKnight(r, c);
+		    }
+		}
+	    }
+	    return false;
+	}else{
+	    
+	}
     }
 
     public void solve(){
