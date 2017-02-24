@@ -27,14 +27,14 @@ public class KnightBoard{
 		for(int c = 0; c < board[0].length; c++){
 		    addKnight(r, c, level);
 		    //----------------------------------------------------------------------------------------------
-		    System.out.println(this);
+		    //System.out.println(this);
 		    //----------------------------------------------------------------------------------------------
 		    if(solveH(r, c, level + 1)){
 			return true;
 		    }else{
 			removeKnight(r, c);
 			//------------------------------------------------------------------------------------------
-			System.out.println(this);
+			//System.out.println(this);
 			//------------------------------------------------------------------------------------------
 		    }
 		}
@@ -45,7 +45,7 @@ public class KnightBoard{
 		int moveRow = moves()[iMoveRow];
 		int moveCol = moves()[iMoveCol];
 		//------------------------------------------------------------------------------------------
-		System.out.println("moveRow: " + moveRow + " moveCol: " + moveCol);
+		//System.out.println("moveRow: " + moveRow + " moveCol: " + moveCol);
 		//------------------------------------------------------------------------------------------
 		if(row + moveRow >= 0 &&
 		   row + moveRow < board.length &&
@@ -54,14 +54,15 @@ public class KnightBoard{
 		   board[row + moveRow][col + moveCol] == 0){
 		    addKnight(row + moveRow, col + moveCol, level);
 		    //----------------------------------------------------------------------------------------------
-		    System.out.println(this);
+		    //System.out.println(this);
 		    //----------------------------------------------------------------------------------------------
 		    if(solveH(row + moveRow, col + moveCol, level + 1)){
 			return true;
 		    }else{
-			removeKnight(row, col);
+			removeKnight(row + moveRow, col + moveCol); //<- BTW, this was why it didn't work; b/c the previous statement was:
+			//removeKnight(row, col); -_-
 			//------------------------------------------------------------------------------------------
-			System.out.println(this);
+			//System.out.println(this);
 			//------------------------------------------------------------------------------------------
 		    }
 		}
@@ -97,9 +98,18 @@ public class KnightBoard{
 
 
     public static void main(String[] args){
+	KnightBoard board3x4 = new KnightBoard(3, 4);
+	System.out.println(board3x4);
+	board3x4.solve();
+	System.out.println(board3x4);
+	KnightBoard board3x7 = new KnightBoard(3, 7);
+	board3x7.solve();
+	System.out.println(board3x7);
 	KnightBoard board4x5 = new KnightBoard(4, 5);
-	System.out.println(board4x5);
 	board4x5.solve();
 	System.out.println(board4x5);
+	KnightBoard board7x7 = new KnightBoard(7, 7);
+	board7x7.solve();
+	System.out.println(board7x7);
     }
 }
