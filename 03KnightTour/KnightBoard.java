@@ -108,8 +108,14 @@ public class KnightBoard{
 	KnightBoard board4x5 = new KnightBoard(4, 5);
 	board4x5.solve();
 	System.out.println(board4x5);
+	KnightBoard board6x7 = new KnightBoard(6, 7);
+	board6x7.solve();
+	System.out.println(board6x7);
 	KnightBoard board7x7 = new KnightBoard(7, 7);
 	board7x7.solve();
 	System.out.println(board7x7);
+	KnightBoard board9x7 = new KnightBoard(9, 7);
+	board9x7.solve();
+	System.out.println(board9x7);
     }
 }
