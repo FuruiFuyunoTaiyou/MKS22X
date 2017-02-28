@@ -23,8 +23,8 @@ public class KnightBoard{
 	if(level > board.length * board[0].length){
 	    return true;
 	}else if(level == 1){
-	    for(int r = 0; r < board.length; r++){
-		for(int c = 0; c < board[0].length; c++){
+	    for(int r = 0; r <= board.length / 2; r++){
+		for(int c = 0; c <= board[0].length / 2; c++){
 		    addKnight(r, c, level);
 		    //----------------------------------------------------------------------------------------------
 		    //System.out.println(this);
@@ -98,7 +98,7 @@ public class KnightBoard{
 
 
     public static void main(String[] args){
-	KnightBoard board3x4 = new KnightBoard(3, 4);
+	/*KnightBoard board3x4 = new KnightBoard(3, 4);
 	System.out.println(board3x4);
 	board3x4.solve();
 	System.out.println(board3x4);
@@ -107,16 +107,40 @@ public class KnightBoard{
 	System.out.println(board3x7);
 	KnightBoard board4x5 = new KnightBoard(4, 5);
 	board4x5.solve();
-	System.out.println(board4x5);
+	System.out.println(board4x5); */
 	KnightBoard board6x7 = new KnightBoard(6, 7);
 	board6x7.solve();
 	System.out.println(board6x7);
 	KnightBoard board7x7 = new KnightBoard(7, 7);
 	board7x7.solve();
-	System.out.println(board7x7);
+	System.out.println(board7x7); /*
 	KnightBoard board2x2 = new KnightBoard(2, 2);
 	board2x2.solve();
 	System.out.println(board2x2);
+	KnightBoard board1x1 = new KnightBoard(1, 1);
+	board1x1.solve();
+	System.out.println(board1x1); */
+	KnightBoard board8x7 = new KnightBoard(8, 7);
+	board8x7.solve();
+	System.out.println(board8x7);
+	KnightBoard board8x8 = new KnightBoard(8, 8);
+	board8x8.solve();
+	System.out.println(board8x8);
+	KnightBoard board7x9 = new KnightBoard(7, 9);
+	board7x9.solve();
+	System.out.println(board7x9);
+	KnightBoard board9x5 = new KnightBoard(9, 5);
+	board9x5.solve();
+	System.out.println(board9x5);
+	KnightBoard board10x5 = new KnightBoard(10, 5);
+	board10x5.solve();
+	System.out.println(board10x5);
+	KnightBoard board8x9 = new KnightBoard(8, 9);
+	board8x9.solve();
+	System.out.println(board8x9);
+	KnightBoard board9x6 = new KnightBoard(9, 6);
+	board9x6.solve();
+	System.out.println(board9x6);
 	KnightBoard board9x7 = new KnightBoard(9, 7);
 	board9x7.solve();
 	System.out.println(board9x7);
