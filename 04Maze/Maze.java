@@ -21,11 +21,28 @@ public class Maze{
 	}
     }
 	
-    /*-----------------------------------------------------------------------
+    ///*-----------------------------------------------------------------------
     public Maze(String filename){
-	
+	throws FileNotFoundException{
+	    Scanner input = new Scanner(new File(filename));
+	    //determine dimensions---------------------------------------------
+	    //if(input){
+		
+	    //}
+	    //loads maze
+	    int row = 0;
+	    while(input.hasNextLine()){
+		String inputLine = input.nextLine();
+		for(int col = 0; col < inputLine.length(); col++){
+		    maze[row][col] = inputLine.charAt(col);
+		}
+		row++; 
+	    }
+	}
+	animate = false;
     }
-
+    
+    /*-----------------------------------------------------------------------
     public boolean solve(){
         
     }
@@ -39,6 +56,17 @@ public class Maze{
     }
     //-----------------------------------------------------------------------*/
     
+    public String toString(){
+	String mazePrint = "";
+	for(int r = 0; r < maze.length; r++){
+	    for(int c = 0; c < maze[0].length; c++){
+		mazePrint += maze[r][c];
+	    }
+	    mazePrint += "\n";
+	}
+	return mazePrint;
+    }
+
 
 
     public static void main(String[] args){
