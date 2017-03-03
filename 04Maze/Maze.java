@@ -17,7 +17,7 @@ public class Maze{
 	try{
 	    Thread.sleep(millis);
 	}catch(InterruptedException e){
-	    //-----------------------------------------------------------------
+	    //----------------------------MSG?---------------------------------
 	}
     }
 	
@@ -25,10 +25,18 @@ public class Maze{
     public Maze(String filename){
 	throws FileNotFoundException{
 	    Scanner input = new Scanner(new File(filename));
-	    //determine dimensions---------------------------------------------
-	    //if(input){
+	    //determines dimensions the ugly-but-should-work way---------------
+	    //also check for exactly 1 E & S ASAP------------------------------
+	    int row = 0;
+	    int col = 0;
+	    int eCount = 0;
+	    int sCount = 0;
+	    while(input.hasNextLine()){
+		String inputLine = input.nextLine();
+		//-------------------------------------------------------------
 		
-	    //}
+		row++;
+	    }
 	    //loads maze
 	    int row = 0;
 	    while(input.hasNextLine()){
@@ -70,5 +78,9 @@ public class Maze{
 
 
     public static void main(String[] args){
+	Maze maze0 = new Maze("data1.dat");
+	clearTerminal();
+	maze0.setAnimate(true);
+	
     }
 }
