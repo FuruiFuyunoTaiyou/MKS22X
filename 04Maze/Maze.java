@@ -71,6 +71,11 @@ public class Maze{
     }
     
     ///*-----------------------------------------------------------------------
+    private int[] moves(){
+	int[] moves = {-1, 0, 0, 1, 1, 0, 0, -1};
+	return moves;
+    }
+    
     public boolean solve(){
         int startr = -1, startc = -1;
 	for(int r = 0; r < maze.length; r++){
@@ -91,7 +96,24 @@ public class Maze{
 	    wait(20);
 	}
 	//---------------------------------------------------------------------
-	
+	if(maze[row][col] == 'E'){
+	    return true;
+	}else{
+	    for(int iMoveRow = 0, iMoveCol = 1; iMoveRow < moves().length - 1; iMoveRow += 2, iMoveCol += 2){
+		int moveRow = moves()[iMoveRow];
+		int moveCol = moves()[iMoveCol];
+		if(maze[row + moveRow][col + moveCol] !='#' &&
+		   maze[row + moveRow][col + moveCol] !='@'){ //DK yet if have to deal with possibility of it being a period yet. Oh, may end up in an infinite loop
+		    maze[row][col] = '@';
+		    if(solve(row + moveRow, col + moveCol)){
+			return true;
+		    }else{
+			maze[row][col] = '.';
+		    }
+		}
+	    }
+	    return false;
+	}
     }
     //-----------------------------------------------------------------------*/
     
@@ -110,11 +132,23 @@ public class Maze{
 
 
     public static void main(String[] args){
-	Maze maze0 = new Maze("data4.dat");
+	Maze maze0 = new Maze("data1.dat");
 	maze0.clearTerminal();
 	maze0.setAnimate(true);
 	//System.out.println(maze0.maze[0][0]);
+	maze0.solve();
 	//System.out.println(maze0);
-	
+	Maze maze1 = new Maze("data2.dat");
+	maze1.clearTerminal();
+	maze1.setAnimate(true);
+	//System.out.println(maze0.maze[0][0]);
+	maze1.solve();
+	//System.out.println(maze1);
+	Maze maze2 = new Maze("data3.dat");
+	maze2.clearTerminal();
+	maze2.setAnimate(true);
+	//System.out.println(maze0.maze[0][0]);
+	maze2.solve();
+	//System.out.println(maze3);
     }
 }
