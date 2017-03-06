@@ -17,23 +17,19 @@ public class Maze{
 	try{
 	    Thread.sleep(millis);
 	}catch(InterruptedException e){
-	    //----------------------------MSG?---------------------------------
 	}
     }
 	
-    ///*-----------------------------------------------------------------------
     public Maze(String filename){
 	try{
 	    Scanner input = new Scanner(new File(filename));
-	    //determines dimensions the ugly-but-should-work way---------------
-	    //also check for exactly 1 E & S ASAP------------------------------
+	    //determines dimensions & checks number of E and S the ugly-but-should-work way
 	    int rowCount = 0;
 	    int colCount = 0;
 	    int eCount = 0;
 	    int sCount = 0;
 	    while(input.hasNextLine()){
 		String inputLine = input.nextLine();
-		//System.out.println(inputLine); //----------------------------
 		colCount = inputLine.length();
 		for(int i = 0; i < colCount; i++){
 		    if(inputLine.charAt(i) == 'E'){
@@ -57,7 +53,6 @@ public class Maze{
 	    int row = 0;
 	    while(input.hasNextLine()){
 		String inputLine = input.nextLine();
-		//System.out.println(inputLine); //----------------------------
 		for(int col = 0; col < inputLine.length(); col++){
 		    maze[row][col] = inputLine.charAt(col);
 		}
@@ -70,7 +65,6 @@ public class Maze{
 	animate = false;
     }
     
-    ///*-----------------------------------------------------------------------
     private int[] moves(){
 	int[] moves = {-1, 0, 0, 1, 1, 0, 0, -1};
 	return moves;
@@ -95,7 +89,6 @@ public class Maze{
 	    System.out.println("\033[2J\033[1;1H"+this);
 	    wait(20);
 	}
-	//---------------------------------------------------------------------
 	if(maze[row][col] == 'E'){
 	    return true;
 	}else{
@@ -103,7 +96,7 @@ public class Maze{
 		int moveRow = moves()[iMoveRow];
 		int moveCol = moves()[iMoveCol];
 		if(maze[row + moveRow][col + moveCol] !='#' &&
-		   maze[row + moveRow][col + moveCol] !='@'){ //DK yet if have to deal with possibility of it being a period yet. Oh, may end up in an infinite loop
+		   maze[row + moveRow][col + moveCol] !='@'){
 		    maze[row][col] = '@';
 		    if(solve(row + moveRow, col + moveCol)){
 			return true;
@@ -115,14 +108,12 @@ public class Maze{
 	    return false;
 	}
     }
-    //-----------------------------------------------------------------------*/
     
     public String toString(){
 	String mazePrint = "";
 	for(int r = 0; r < maze.length; r++){
 	    for(int c = 0; c < maze[0].length; c++){
 		mazePrint += maze[r][c];
-		//System.out.println(maze[r][c]); //---------------------------
 	    }
 	    mazePrint += "\n";
 	}
@@ -132,23 +123,20 @@ public class Maze{
 
 
     public static void main(String[] args){
-	Maze maze0 = new Maze("data1.dat");
+	Maze maze0 = new Maze("data4.dat");
 	maze0.clearTerminal();
-	maze0.setAnimate(true);
-	//System.out.println(maze0.maze[0][0]);
+	//maze0.setAnimate(true);
 	maze0.solve();
-	//System.out.println(maze0);
 	Maze maze1 = new Maze("data2.dat");
 	maze1.clearTerminal();
-	maze1.setAnimate(true);
-	//System.out.println(maze0.maze[0][0]);
+	//maze1.setAnimate(true);
 	maze1.solve();
-	//System.out.println(maze1);
 	Maze maze2 = new Maze("data3.dat");
 	maze2.clearTerminal();
-	maze2.setAnimate(true);
-	//System.out.println(maze0.maze[0][0]);
+	//maze2.setAnimate(true);
 	maze2.solve();
-	//System.out.println(maze3);
+	System.out.println(maze0);
+	System.out.println(maze1);
+	System.out.println(maze2);
     }
 }
