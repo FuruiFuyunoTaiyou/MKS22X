@@ -23,29 +23,49 @@ public class Maze{
 	
     ///*-----------------------------------------------------------------------
     public Maze(String filename){
-	throws FileNotFoundException{
+	try{
 	    Scanner input = new Scanner(new File(filename));
 	    //determines dimensions the ugly-but-should-work way---------------
 	    //also check for exactly 1 E & S ASAP------------------------------
-	    int row = 0;
-	    int col = 0;
+	    int rowCount = 0;
+	    int colCount = 0;
 	    int eCount = 0;
 	    int sCount = 0;
 	    while(input.hasNextLine()){
 		String inputLine = input.nextLine();
-		//-------------------------------------------------------------
-		
-		row++;
+		//System.out.println(inputLine); //----------------------------
+		colCount = inputLine.length();
+		for(int i = 0; i < colCount; i++){
+		    if(inputLine.charAt(i) == 'E'){
+			eCount++;
+		    }else if(inputLine.charAt(i) == 'S'){
+			sCount++;
+		    }
+		}
+		rowCount++;
 	    }
+	    if(eCount != 1){
+		System.out.println("Error: There is not exactly 1 E in the maze");
+		System.exit(0);
+	    }else if(sCount != 1){
+		System.out.println("Error: There is not exactly 1 S in the maze");
+		System.exit(0);
+	    }
+	    maze = new char[rowCount][colCount];
 	    //loads maze
+	    input = new Scanner(new File(filename));
 	    int row = 0;
 	    while(input.hasNextLine()){
 		String inputLine = input.nextLine();
+		//System.out.println(inputLine); //----------------------------
 		for(int col = 0; col < inputLine.length(); col++){
 		    maze[row][col] = inputLine.charAt(col);
 		}
 		row++; 
 	    }
+	}catch(FileNotFoundException e){
+	    System.out.println("File not found");
+	    System.exit(0);
 	}
 	animate = false;
     }
@@ -69,6 +89,7 @@ public class Maze{
 	for(int r = 0; r < maze.length; r++){
 	    for(int c = 0; c < maze[0].length; c++){
 		mazePrint += maze[r][c];
+		//System.out.println(maze[r][c]); //---------------------------
 	    }
 	    mazePrint += "\n";
 	}
@@ -79,8 +100,10 @@ public class Maze{
 
     public static void main(String[] args){
 	Maze maze0 = new Maze("data1.dat");
-	clearTerminal();
+	maze0.clearTerminal();
 	maze0.setAnimate(true);
+	//System.out.println(maze0.maze[0][0]);
+	//System.out.println(maze0);
 	
     }
 }
