@@ -64,15 +64,25 @@ public class Maze{
 		row++; 
 	    }
 	}catch(FileNotFoundException e){
-	    System.out.println("File not found");
+	    System.out.println("Error: File not found");
 	    System.exit(0);
 	}
 	animate = false;
     }
     
-    /*-----------------------------------------------------------------------
+    ///*-----------------------------------------------------------------------
     public boolean solve(){
-        
+        int startr = -1, startc = -1;
+	for(int r = 0; r < maze.length; r++){
+	    for(int c = 0; c < maze[0].length; c++){
+		if(maze[r][c] == 'S'){
+		    startr = r;
+		    startc = c;
+		}
+	    }
+	}
+	maze[startr][startc] = ' ';
+	return solve(startr, startc);
     }
     
     private boolean solve(int row, int col){
@@ -80,6 +90,7 @@ public class Maze{
 	    System.out.println("\033[2J\033[1;1H"+this);
 	    wait(20);
 	}
+	//---------------------------------------------------------------------
 	
     }
     //-----------------------------------------------------------------------*/
@@ -99,7 +110,7 @@ public class Maze{
 
 
     public static void main(String[] args){
-	Maze maze0 = new Maze("data1.dat");
+	Maze maze0 = new Maze("data4.dat");
 	maze0.clearTerminal();
 	maze0.setAnimate(true);
 	//System.out.println(maze0.maze[0][0]);
