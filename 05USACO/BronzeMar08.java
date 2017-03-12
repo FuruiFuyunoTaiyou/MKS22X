@@ -66,4 +66,8 @@ public class BronzeMar08{
 	}
 	return total * 72 * 72;
     }
+
+
+
+    public static void main(String[] args){}
 }
