@@ -7,9 +7,9 @@ public class USACO{
 	return BronzeMar08.runBronze(filename);
     }
 
-   /* public static void main(String[] args) throws FileNotFoundException{
-	for(int num = 1; num < 11; num++){
+   public static void main(String[] args) throws FileNotFoundException{
+       /*for(int num = 1; num < 11; num++){
 	    System.out.println(bronze("makelake." + num + ".in"));
-	}
-    }*/
+	    }*/
+   }
 }
