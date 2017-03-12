@@ -1,3 +1,5 @@
+//pair-coding partner: Ann Caplin
+
 import java.util.Scanner;
 import java.io.*;
 
