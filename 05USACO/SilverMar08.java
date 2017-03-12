@@ -39,22 +39,17 @@ public class SilverMar08{
 	for(int time = 0; time < numSeconds; time++){
 	    for(int row = 0; row < board.length; row++){
 		for(int col = 0; col < board[0].length; col++){
-		    //boolean up = false, down = false, left = false, right = false;
 		    if(board[row][col][0] != -1){
 			if(row != 0 && board[row - 1][col][0] != -1){
-			    //up = true;
 			    board[row][col][1] += board[row - 1][col][0];
 			}
 			if(col != 0 && board[row][col - 1][0] != -1){
-			    //left = true;
 			    board[row][col][1] += board[row][col - 1][0];
 			}
 			if(row != board.length - 1 && board[row + 1][col][0] != -1){
-			    //down = true;
 			    board[row][col][1] += board[row + 1][col][0];
 			}
 			if(col != board[0].length - 1 && board[row][col + 1][0] != -1){
-			    //right = true;
 			    board[row][col][1] += board[row][col + 1][0];
 			}
 		    }else{
