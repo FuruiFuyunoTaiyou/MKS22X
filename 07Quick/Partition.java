@@ -49,6 +49,7 @@ public class Partition{
     
     public static void main(String[] args){
 	int[] test = {8, 6, 7, 5, 3, 0, 9, -22};
+	//int[] test = {999,999,999,4,1,0,3,2,999,999,999};
 	System.out.println("Final pivot position: " + part(test, 0, test.length - 1));
 	//System.out.println("Final pivot position: " + part(test, 2, 5));
 	for(int i = 0; i < test.length; i++){
