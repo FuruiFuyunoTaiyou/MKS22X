@@ -2,9 +2,6 @@ public class Quick{
     public static int quickselect(int[] data, int k){
 	int start = 0;
 	int end = data.length - 1;
-	//boolean unmatched = true;
-	//while(Partition.part(data, start, end) != k){
-	//while(unmatched){
 	while(true){
 	    int newPivotI = Partition.part(data, start, end);
 	    if(newPivotI > k){
