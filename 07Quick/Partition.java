@@ -12,11 +12,7 @@ public class Partition{
 	Random randgen = new Random();
 	int pivotIndexI = randgen.nextInt(end - start + 1) + start;
 	int pivot = data[pivotIndexI];
-	//
-	//System.out.println("Pivot: " + pivot);
 	int rightmostI = end;
-	//
-	//System.out.println("Rightmost: " + rightmostI);
 	int numSmaller = 0;
 	for(int i = start; i < end + 1; i++){
 	    if(data[i] <= pivot){
@@ -24,23 +20,14 @@ public class Partition{
 	    }
 	}
 	numSmaller--;
-	//
-	//System.out.println("#Smaller: " + numSmaller);
 	int pivotIndexF = start + numSmaller;
 	swap(data, pivotIndexI, pivotIndexF);
 	for(int i = start; i < pivotIndexF; i++){
 	    if(data[i] > pivot){
 	        swap(data, i, rightmostI);
-		//
-		//System.out.println("Rightmost used: " + rightmostI);
 		rightmostI--;
 		i--;
 	    }
-	    /*//
-	    for(int x = 0; x < data.length; x++){
-		System.out.print(data[x] + ", ");
-	    }
-	    System.out.println();*/
 	}
 	return pivotIndexF;
     }
