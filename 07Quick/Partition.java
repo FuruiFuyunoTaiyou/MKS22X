@@ -35,12 +35,31 @@ public class Partition{
 
     
     public static void main(String[] args){
-	int[] test = {8, 6, 7, 5, 3, 0, 9, -22};
+	/*int[] test = {8, 6, 7, 5, 3, 0, 9, -22};
 	//int[] test = {999,999,999,4,1,0,3,2,999,999,999};
 	System.out.println("Final pivot position: " + part(test, 0, test.length - 1));
 	//System.out.println("Final pivot position: " + part(test, 2, 5));
 	for(int i = 0; i < test.length; i++){
 	    System.out.print(test[i] + ", ");
+	    }*/
+
+	Random randgen = new Random();
+	int[] test = new int[randgen.nextInt(100)];
+	int numCorrect = 0;
+	for(int i = 0; i < test.length; i++){
+	    test[i] = randgen.nextInt() * (randgen.nextInt(2) + 1) * -1;
 	}
+	int[] key = new int[test.length];
+	for(int x = 0; x < test.length; x++){
+	    key[x] = test[x];
+	}
+	sort[key];
+	/*for(int z = 0; z < ; z++){
+	    int returnedI = part(test, 0, test.length - 1);
+	    if(test[returnedI] == key[returnedI]){
+		numCorrect++;
+	    }
+	    }*/
+	//System.out.println("Success: " + numCorrect
     }
 }
