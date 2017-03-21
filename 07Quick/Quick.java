@@ -14,6 +14,10 @@ public class Quick{
 	}
     }
 
+    public static void quicksort(int[] a){
+	
+    }
+
 
 
     public static void main(String[] args){
