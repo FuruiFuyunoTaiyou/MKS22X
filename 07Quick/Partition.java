@@ -32,6 +32,32 @@ public class Partition{
 	return pivotIndexF;
     }
 
+    public static int[] part3way(int[] data, int start, int end){
+	Random randgen = new Random();
+	int pivotIndexI = randgen.nextInt(end - start + 1) + start;
+	int pivot = data[pivotIndexI];
+	int[] pivotIndices = new int[2];
+	int i = start;
+	int lt = start;
+	int gt = end;
+	swap(data, lt, pivotIndexI);
+	while(i <= gt){
+	    if(data[i] < pivot){
+		swap(data, lt, i);
+		i++;
+		lt++;
+	    }else if(data[i] == pivot){
+		i++;
+	    }else{
+		swap(data, gt, i);
+		gt--;
+	    }
+	}
+	pivotIndices[0] = lt;
+	pivotIndices[1] = gt;
+	return pivotIndices;
+    }
+
 
     
     public static void main(String[] args){
@@ -43,6 +69,7 @@ public class Partition{
 	    System.out.print(test[i] + ", ");
 	    }*/
 
+	/*---------------------------------------------------------------------
 	Random randgen = new Random();
 	int[] test = new int[randgen.nextInt(100)];
 	int numCorrect = 0;
@@ -61,5 +88,13 @@ public class Partition{
 	    }
 	    }*/
 	//System.out.println("Success: " + numCorrect
+	
+	int[] test = {203, 4, 0, 999, 1000, 0, 333, 999, 4, 203, 333, 333, 1111, 0};
+	int[] range = new int[2];
+	range = part3way(test, 0, test.length - 1);
+	System.out.println("Pivot range: " + range[0] + " -> " + range[1]);
+	for(int i = 0; i < test.length; i++){
+	    System.out.print(test[i] + ", ");
+	}
     }
 }
