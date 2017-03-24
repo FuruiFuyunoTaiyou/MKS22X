@@ -43,6 +43,13 @@ public class Quick{
 	    qsh(ary, pivotIs[1] + 1, end);
 	}
     }
+
+    public static int[] testQuickSort(){
+	Random randgen = new Random();
+	for(int testNo = 0; testNo < 1000; testNo++){
+	    //int[] test = new int[Random.nextInt() * -1]; still need to randomize -1's exp
+	}
+    }
     
 
 
@@ -67,11 +74,15 @@ public class Quick{
 	System.out.println("0th smallest: " + quickselect(test1, 0));
 	*/
 
+	/*
 	//int[] test3 = {111, 999, 999, -888, 333, 0, 00, -22, 222, 555, 1001, 5, 3, 666, 7777, 1000000, 20000, -333, 222};
 	int[] test3 = new int[1000];
 	quicksort(test3);
 	for(int i : test3){
 	    System.out.print(i + " ");
 	}
+	*/
+
+	
     }
 }
