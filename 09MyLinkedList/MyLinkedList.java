@@ -18,7 +18,7 @@ public class MyLinkedList{
 	String printVer= "[";
 	LNode current = start;
 	for(int i = 0; i < size; i++, current = current.next){
-	    printVer += " " + current.value + ",";
+	    printVer += " " + current.value + ","; //must fix formatting
 	}
 	printVer += "]";
 	return printVer;
