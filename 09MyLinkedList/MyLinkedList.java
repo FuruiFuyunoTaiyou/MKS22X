@@ -7,18 +7,40 @@ public class MyLinkedList{
 	size = 0;
     }
 
+    /*
     public boolean add(int value){ //to beginning for now
 	LNode newStart = new LNode(value);
 	newStart.linkNext(start);
 	start = newStart;
-	return true; //fix this a bit later (for possibility of it being false -- check documentation
+	size++;
+	return true; //fix this a bit later (for possibility of it being false -- check documentation)
+    }
+    */
+
+    public boolean add(int value){ //include exceptions thrown after done with minimum
+	//Problem: start initialized as null. Temp Soln:
+	if(start == null){
+	    start = new LNode(value);
+	}else{
+	    LNode end = start;
+	    for(int i = 1; i < size; i++){
+		end = end.next;	
+	    }
+	    end.linkNext(new LNode(value));
+	    end.next.linkPrev(end);
+	}
+	size++;
+	return true;
     }
 
     public String toString(){
-	String printVer= "[";
+	String printVer = "[ ";
 	LNode current = start;
-	for(int i = 0; i < size; i++, current = current.next){
-	    printVer += " " + current.value + ","; //must fix formatting
+	//Temp Soln for Formatting:
+	printVer += current.value;
+	current = current.next;
+	for(int i = 1; i < size; i++, current = current.next){
+	    printVer += ", " + current.value;
 	}
 	printVer += "]";
 	return printVer;
@@ -49,5 +71,12 @@ public class MyLinkedList{
     public static void main(String[] args){
 	MyLinkedList test0 = new MyLinkedList();
 	System.out.println(test0);
+	test0.add(4);
+	System.out.println(test0);
+	test0.add(-1);
+	System.out.println(test0);
+	test0.add(0);
+	System.out.println(test0);
+
     }
 }
