@@ -34,13 +34,17 @@ public class MyLinkedList{
     }
 
     public String toString(){
-	String printVer = "[ ";
-	LNode current = start;
-	//Temp Soln for Formatting:
-	printVer += current.value;
-	current = current.next;
-	for(int i = 1; i < size; i++, current = current.next){
-	    printVer += ", " + current.value;
+	//Temp (i.e. not-elegant) Soln:
+	String printVer = "[";
+	if(size > 0){
+	     printVer += " ";
+	    LNode current = start;
+	    //Temp Soln for Formatting:
+	    printVer += current.value;
+	    current = current.next;
+	    for(int i = 1; i < size; i++, current = current.next){
+		printVer += ", " + current.value;
+	    }
 	}
 	printVer += "]";
 	return printVer;
