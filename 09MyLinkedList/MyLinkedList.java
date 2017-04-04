@@ -56,6 +56,44 @@ public class MyLinkedList{
 	return true;
     }
 
+    private void addBefore(LNode location, LNode TBA){
+	if(location.prev == null){
+	    TBA.next = location;
+	    location.prev = TBA;
+	    start = TBA;
+	}else{
+	    TBA.next = location;
+	    TBA.prev = location.prev;
+	    location.prev = TBA;
+	    TBA.prev.next = TBA;
+	}
+	size++;
+    }
+
+    private void addAfter(LNode location, LNode TBA){ //TBA = toBeAdded
+	if(location.next == null){
+	    TBA.prev = location;
+	    location.next = TBA;
+	    end = TBA;
+	}else{
+	    TBA.prev = location;
+	    TBA.next = location.next;
+	    location.next = TBA;
+	    TBA.next.prev = TBA;
+	}
+	size++;
+    }
+
+    public void add(int index, int value){
+	if(index < 0 || index > size()){
+	    throw new IndexOutOfBoundsException("Invalid Index");
+	}else if(size() == 0 || index == size()){
+	    add(value);
+	}else{
+	    addBefore(getNode(index), new LNode(value));
+	}
+    }
+
     private LNode remove(LNode node){
 	if(node.prev == null && node.next == null){
 	    start = null;
@@ -125,15 +163,9 @@ public class MyLinkedList{
 	test0.add(2000);
 	test0.add(1000);
 	System.out.println("Size: " + test0.size() + "\n" + test0);
-	for(int i = 0; i < test0.size(); i++){
-	    System.out.println(i + "th element: " + test0.get(i));
+	for(int i = 0; i <= test0.size(); i += 2){
+	    test0.add(i, 8);
 	}
-	System.out.println(test0.set(2, 3000) + " -> 3000");
 	System.out.println(test0);
-	System.out.println(test0.remove(0));
-	System.out.println(test0.remove(3));
-	System.out.println(test0.remove(test0.size() - 1));
-	System.out.println(test0.remove(-1));
-	
     }
 }
