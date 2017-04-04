@@ -14,18 +14,22 @@ public class MyLinkedList{
     }
 
     private LNode getNode(int index){
-	LNode current = start;
-	if(index <= size/2){
-	    for(int i = 0; i < index; i++){
-		current = current.next;
-	    }
+	if(index < 0 || index >= size()){
+	    throw new IndexOutOfBoundsException("Invalid Index");
 	}else{
-	    current = end;
-	    for(int i = size - 1; i > index; i--){
-		current = current.prev;
+	    LNode current = start;
+	    if(index <= size/2){
+		for(int i = 0; i < index; i++){
+		    current = current.next;
+		}
+	    }else{
+		current = end;
+		for(int i = size - 1; i > index; i--){
+		    current = current.prev;
+		}
 	    }
+	    return current;
 	}
-	return current;
     }
 
     public int get(int index){
@@ -39,7 +43,7 @@ public class MyLinkedList{
 	return oldValue;
     }
 
-    public boolean add(int value){ //include exceptions thrown after done with minimum
+    public boolean add(int value){
 	if(start == null){
 	    start = new LNode(value);
 	    end = start;
@@ -49,16 +53,36 @@ public class MyLinkedList{
 	    end = end.next;
 	}
 	size++;
-	return true; //check documentation for when it'd return false
+	return true;
+    }
+
+    private LNode remove(LNode node){
+	if(node.prev == null && node.next == null){
+	    start = null;
+	    end = null;
+	}else if(node.prev == null){
+	    start = node.next;
+	    start.prev = null;
+	}else if(node.next == null){
+	    node.prev.next = null;
+	    end = node.prev;
+	}else{
+	    node.prev.next = node.next;
+	    node.next.prev = node.prev;
+	}
+	size--;
+	return node;
+    }
+
+    public int remove(int index){
+	return remove(getNode(index)).value;
     }
 
     public String toString(){
-	//Temp (i.e. not-elegant) Soln:
 	String printVer = "[";
 	if(size > 0){
 	     printVer += " ";
 	    LNode current = start;
-	    //Temp Soln for Formatting:
 	    printVer += current.value;
 	    current = current.next;
 	    for(int i = 1; i < size; i++, current = current.next){
@@ -104,7 +128,12 @@ public class MyLinkedList{
 	for(int i = 0; i < test0.size(); i++){
 	    System.out.println(i + "th element: " + test0.get(i));
 	}
-	System.out.println(test0.set(0, 3000) + " -> 3000");
+	System.out.println(test0.set(2, 3000) + " -> 3000");
 	System.out.println(test0);
+	System.out.println(test0.remove(0));
+	System.out.println(test0.remove(3));
+	System.out.println(test0.remove(test0.size() - 1));
+	System.out.println(test0.remove(-1));
+	
     }
 }
