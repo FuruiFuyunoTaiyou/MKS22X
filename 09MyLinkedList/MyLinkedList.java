@@ -105,7 +105,7 @@ public class MyLinkedList{
 	}
     }
 
-    private LNode remove(LNode node){
+    private void remove(LNode node){
 	if(node.prev == null && node.next == null){
 	    start = null;
 	    end = null;
@@ -120,11 +120,12 @@ public class MyLinkedList{
 	    node.next.prev = node.prev;
 	}
 	size--;
-	return node;
     }
 
     public int remove(int index){
-	return remove(getNode(index)).value;
+	LNode target = getNode(index);
+	remove(target);
+	return target.value;
     }
 
     public String toString(){
@@ -212,5 +213,9 @@ public class MyLinkedList{
 	System.out.println(test0.debugToString());
 	System.out.println(test0.indexOf(0));
 	System.out.println(test0.indexOf(302));
+	for(int i = 0; i < test0.size(); i++){
+	    test0.remove(i);
+	    System.out.println(test0);
+	}
     }
 }
