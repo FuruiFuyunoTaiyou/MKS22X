@@ -1,36 +1,43 @@
 public class MyLinkedList{
     private LNode start;
     private int size;
+    private LNode end;
 
     public MyLinkedList(){
 	start = null;
 	size = 0;
+	end = null;
+    }
+
+    public int size(){
+	return size;
     }
 
     /*
-    public boolean add(int value){ //to beginning for now
-	LNode newStart = new LNode(value);
-	newStart.linkNext(start);
-	start = newStart;
-	size++;
-	return true; //fix this a bit later (for possibility of it being false -- check documentation)
+    public int get(int index){
+	LNode current = start;
+	if(index < size/2){
+	    for(int i = 0; i < index; i++){
+		current = current.next;
+	    }
+	}else{
+	    for(int i = 
+	}
+	return 
     }
     */
 
     public boolean add(int value){ //include exceptions thrown after done with minimum
-	//Problem: start initialized as null. Temp Soln:
 	if(start == null){
 	    start = new LNode(value);
+	    end = start;
 	}else{
-	    LNode end = start;
-	    for(int i = 1; i < size; i++){
-		end = end.next;	
-	    }
 	    end.linkNext(new LNode(value));
 	    end.next.linkPrev(end);
+	    end = end.next;
 	}
 	size++;
-	return true;
+	return true; //check documentation for when it'd return false
     }
 
     public String toString(){
@@ -74,13 +81,13 @@ public class MyLinkedList{
 
     public static void main(String[] args){
 	MyLinkedList test0 = new MyLinkedList();
-	System.out.println(test0);
+	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(4);
-	System.out.println(test0);
+	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(-1);
-	System.out.println(test0);
+	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(0);
-	System.out.println(test0);
+	System.out.println("Size: " + test0.size() + "\n" + test0);
 
     }
 }
