@@ -32,6 +32,13 @@ public class MyLinkedList{
 	return getNode(index).value;
     }
 
+    public int set(int index, int newValue){
+	LNode current = getNode(index);
+	int oldValue = current.value;
+	current.value = newValue;
+	return oldValue;
+    }
+
     public boolean add(int value){ //include exceptions thrown after done with minimum
 	if(start == null){
 	    start = new LNode(value);
@@ -88,14 +95,16 @@ public class MyLinkedList{
 	MyLinkedList test0 = new MyLinkedList();
 	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(4);
-	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(-1);
-	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(0);
+	test0.add(1000);
+	test0.add(2000);
+	test0.add(1000);
 	System.out.println("Size: " + test0.size() + "\n" + test0);
 	for(int i = 0; i < test0.size(); i++){
 	    System.out.println(i + "th element: " + test0.get(i));
 	}
-
+	System.out.println(test0.set(0, 3000) + " -> 3000");
+	System.out.println(test0);
     }
 }
