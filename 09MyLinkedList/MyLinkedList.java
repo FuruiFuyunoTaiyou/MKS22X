@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MyLinkedList{
     private LNode start;
     private int size;
@@ -140,6 +142,21 @@ public class MyLinkedList{
 	return printVer;
     }
 
+    public String debugToString(){
+	String printVer = "[";
+	if(size > 0){
+	     printVer += " ";
+	    LNode current = start;
+	    printVer += current;
+	    current = current.next;
+	    for(int i = 1; i < size; i++, current = current.next){
+		printVer += ", " + current;
+	    }
+	}
+	printVer += "]";
+	return printVer;
+    }
+
     private class LNode{
 	private int value;
 	private LNode next;
@@ -157,6 +174,22 @@ public class MyLinkedList{
 
 	public void linkPrev(LNode prevNode){
 	    prev = prevNode;
+	}
+
+	public String toString(){
+	    String debugRep = "(";
+	    if(prev == null){
+		debugRep += "null";
+	    }else{
+		debugRep += prev.value;
+	    }
+	    debugRep += ") " + value + " (";
+	    if(next == null){
+		debugRep += "null";
+	    }else{
+		debugRep += next.value;
+	    }
+	    return debugRep + ")";
 	}
     }
 
@@ -176,6 +209,7 @@ public class MyLinkedList{
 	    test0.add(i, 8);
 	}
 	System.out.println(test0);
+	System.out.println(test0.debugToString());
 	System.out.println(test0.indexOf(0));
 	System.out.println(test0.indexOf(302));
     }
