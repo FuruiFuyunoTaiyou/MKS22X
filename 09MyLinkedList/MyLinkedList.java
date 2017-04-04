@@ -13,19 +13,24 @@ public class MyLinkedList{
 	return size;
     }
 
-    /*
-    public int get(int index){
+    private LNode getNode(int index){
 	LNode current = start;
-	if(index < size/2){
+	if(index <= size/2){
 	    for(int i = 0; i < index; i++){
 		current = current.next;
 	    }
 	}else{
-	    for(int i = 
+	    current = end;
+	    for(int i = size - 1; i > index; i--){
+		current = current.prev;
+	    }
 	}
-	return 
+	return current;
     }
-    */
+
+    public int get(int index){
+	return getNode(index).value;
+    }
 
     public boolean add(int value){ //include exceptions thrown after done with minimum
 	if(start == null){
@@ -88,6 +93,9 @@ public class MyLinkedList{
 	System.out.println("Size: " + test0.size() + "\n" + test0);
 	test0.add(0);
 	System.out.println("Size: " + test0.size() + "\n" + test0);
+	for(int i = 0; i < test0.size(); i++){
+	    System.out.println(i + "th element: " + test0.get(i));
+	}
 
     }
 }
