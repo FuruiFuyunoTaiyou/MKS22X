@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyLinkedList{
+public class MyLinkedList implements Iterable<Integer>{
     private LNode start;
     private int size;
     private LNode end;
@@ -158,6 +158,10 @@ public class MyLinkedList{
 	return printVer;
     }
 
+    public Iterator<Integer> iterator(){
+	return new LinkedListIterator(this, start);
+    }
+
     private class LNode{
 	private int value;
 	private LNode next;
@@ -191,6 +195,35 @@ public class MyLinkedList{
 		debugRep += next.value;
 	    }
 	    return debugRep + ")";
+	}
+    }
+
+    public class LinkedListIterator implements Iterator<Integer>{
+	private MyLinkedList list;
+	private LNode current;
+
+	public LinkedListIterator(MyLinkedList list, LNode current){
+	    this.list = list;
+	    this.current = current;
+	}
+ 
+	public boolean hasNext(){
+	    if(list.start == null){
+		return false;
+	    }
+	    if(!(current.equals(list.end))){
+		return true;
+	    }else{
+		return false;
+	    }
+	}
+
+	public Integer next(){
+	    return null;
+	}
+
+	public void remove(){
+
 	}
     }
 
