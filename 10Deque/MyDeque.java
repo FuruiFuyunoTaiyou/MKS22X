@@ -14,10 +14,8 @@ public class MyDeque{
 
     private String[] expand(String[] original){
 	String[] copy = new String[original.length * 2];
-	int i = 0;
-	for(String ele : original){
-	    copy[i] = ele;
-	    i++;
+	for(int i = first; i <= last; i++){
+	    copy[i] = original[i % original.length];
 	}
 	return copy;
     }
@@ -30,10 +28,10 @@ public class MyDeque{
 
     public void addLast(String ele){
 	if(ele != null){
-	    if(arr[last] == null){
+	    if(arr[last % arr.length] == null){
 		arr[first] = ele;
 	    }else if(arr[(last + 1) % arr.length] == null){
-		arr[last + 1] = ele;
+		arr[(last + 1) % arr.length] = ele;
 		last++;
 	    }else{
 		arr = expand(arr);
@@ -80,6 +78,8 @@ public class MyDeque{
     public static void main(String[] args){
 	MyDeque test0 = new MyDeque();
 	System.out.println(test0);
+	test0.first = 5;
+	test0.last = 5;
 	test0.addLast("A");
 	System.out.println(test0.last + ":" + test0);
 	test0.addLast("B");
