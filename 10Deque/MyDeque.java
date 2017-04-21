@@ -22,7 +22,22 @@ public class MyDeque{
 
     public void addFirst(String ele){
 	if(ele != null){
-
+	    if(first < 0 && arr[arr.length + (first % arr.length)] == null){
+		arr[arr.length + (first % arr.length)] = ele;
+	    }else if(first - 1 < 0 && arr[arr.length + ((first - 1) % arr.length)] == null){
+		arr[arr.length + ((first - 1) % arr.length)] = ele;
+		first--;
+	    }else if(arr[first % arr.length] == null){
+		arr[first] = ele;
+	    }else if(arr[(first - 1) % arr.length] == null){
+		arr[(first - 1) % arr.length] = ele;
+		first--;
+	    }else{
+		arr = expand(arr);
+		addFirst(ele);
+	    }
+	}else{
+	    throw new NullPointerException("Cannot add a null element");
 	}
     }
 
@@ -37,6 +52,8 @@ public class MyDeque{
 		arr = expand(arr);
 		addLast(ele);
 	    }
+	}else{
+	    throw new NullPointerException("Cannot add a null element");
 	}
     }
 
@@ -86,23 +103,21 @@ public class MyDeque{
 	System.out.println(test0.last + ":" + test0);
 	test0.addLast("C");
 	System.out.println(test0.last + ":" + test0);
-	test0.addLast("D");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("E");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("F");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("G");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("H");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("I");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("J");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("K");
-	System.out.println(test0.last + ":" + test0);
-	test0.addLast("L");
-	System.out.println(test0.last + ":" + test0);
+	test0.addFirst("Z");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("Y");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("X");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("W");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("V");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("U");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("T");
+	System.out.println(test0.first + ":" + test0);
+	test0.addFirst("S");
+	System.out.println(test0.first + ":" + test0);
     }
 }
