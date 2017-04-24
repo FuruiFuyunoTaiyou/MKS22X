@@ -15,21 +15,30 @@ public class MyDeque{
     private String[] expand(String[] original){
 	String[] copy = new String[original.length * 2];
 	for(int i = first; i <= last; i++){
-	    copy[i] = original[i % original.length];
+	    if(i < 0){
+		copy[copy.length + (i % copy.length)] = original[original.length + (i % original.length)];
+	    }else{
+		copy[i] = original[i % original.length];
+	    }
 	}
 	return copy;
     }
 
     public void addFirst(String ele){
 	if(ele != null){
-	    if(first < 0 && arr[arr.length + (first % arr.length)] == null){
+	    if(first - 1 < 0 && (first - 1) % arr.length == 0 && arr[0] == null){
+		arr[0] = ele;
+		first--;
+	    }else if(first < 0 && first % arr.length == 0 && arr[0] == null){
+		arr[0] = ele;
+	    }else if(first >= 0 && arr[first % arr.length] == null){
+		arr[first] = ele;
+	    }else if(first < 0 && arr[arr.length + (first % arr.length)] == null){
 		arr[arr.length + (first % arr.length)] = ele;
 	    }else if(first - 1 < 0 && arr[arr.length + ((first - 1) % arr.length)] == null){
 		arr[arr.length + ((first - 1) % arr.length)] = ele;
 		first--;
-	    }else if(arr[first % arr.length] == null){
-		arr[first] = ele;
-	    }else if(arr[(first - 1) % arr.length] == null){
+	    }else if(first >= 0 && arr[(first - 1) % arr.length] == null){
 		arr[(first - 1) % arr.length] = ele;
 		first--;
 	    }else{
@@ -43,9 +52,14 @@ public class MyDeque{
 
     public void addLast(String ele){
 	if(ele != null){
-	    if(arr[last % arr.length] == null){
+	    if(last < 0 && arr[arr.length + (last % arr.length)] == null){
+		arr[arr.length + (last % arr.length)] = ele;
+	    }else if(last + 1 < 0 && arr[arr.length + ((last + 1) % arr.length)] == null){
+		arr[arr.length + ((last + 1) % arr.length)] = ele;
+		last++;
+	    }else if(last >= 0 && arr[last % arr.length] == null){
 		arr[first] = ele;
-	    }else if(arr[(last + 1) % arr.length] == null){
+	    }else if(last + 1 >= 0 && arr[(last + 1) % arr.length] == null){
 		arr[(last + 1) % arr.length] = ele;
 		last++;
 	    }else{
@@ -57,15 +71,42 @@ public class MyDeque{
 	}
     }
 
+    private boolean isEmpty(){
+	if(first == last && arr[first] == null){
+	    return true;
+	}else{
+	    return false;
+	}
+    }
+
     public String removeFirst(){
-
-	return "HONMAKA";
+	if(!isEmpty()){
+	    String removed = "";
+	    if(first < 0){
+		removed = arr[arr.length + (first % arr.length)];
+		arr[arr.length + (first % arr.length)] = null;
+	    }else{
+		removed = arr[first % arr.length];
+		arr[first % arr.length] = null;
+	    }
+	    first++;
+	    return removed;
+	}else{
+	    throw new NoSuchElementException("Deque is empty");
+	}
     }
 
-    public String removeLast(){
-
-	return "HONMAKA";
-    }
+    /*public String removeLast(){
+	if(!isEmpty()){
+	    String removed = "";
+	    removed = arr[last % arr.length];
+	    arr[first % arr.length] = null;
+	    first++;
+	    return removed;
+	}else{
+	    throw new NoSuchElementException("Deque is empty");
+	}
+	}*/
 
     public String getFirst(){
 
@@ -79,7 +120,6 @@ public class MyDeque{
 
     public String toString(){
 	String printVer = "[";
-	//INSTEAD OF LENGTH, CALCULATE FROM FIRST - LAST ----------------------
 	if(arr.length > 0){
 	    printVer += " ";
 	    for(String str : arr){
@@ -95,8 +135,8 @@ public class MyDeque{
     public static void main(String[] args){
 	MyDeque test0 = new MyDeque();
 	System.out.println(test0);
-	test0.first = 5;
-	test0.last = 5;
+	test0.first = -5;
+	test0.last = -5;
 	test0.addLast("A");
 	System.out.println(test0.last + ":" + test0);
 	test0.addLast("B");
@@ -119,5 +159,8 @@ public class MyDeque{
 	System.out.println(test0.first + ":" + test0);
 	test0.addFirst("S");
 	System.out.println(test0.first + ":" + test0);
+	for(int i = 0; i < 4; i++){
+	    System.out.println(test0.removeFirst() + ":" + test0);
+	}
     }
 }
