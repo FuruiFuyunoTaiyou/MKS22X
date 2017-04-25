@@ -14,18 +14,43 @@ public class MyDeque{
 
     private String[] expand(String[] original){
 	String[] copy = new String[original.length * 2];
+	System.out.println(last);
 	for(int i = first; i <= last; i++){
-	    if(i < 0){
-		copy[copy.length + (i % copy.length)] = original[original.length + (i % original.length)];
+	    if(iEq(i) < iEq(first)){
+	    
+		//if(i % original.length >= 0){
+		System.out.println(i + " -> " + (iEq(i)));
+		//copy[i % original.length] = original[i % original.length];
+		copy[iEq(i)] = original[iEq(i)];
 	    }else{
-		copy[i] = original[i % original.length];
+		System.out.println(i + " -> " + (original.length + (i % original.length)) + " -> " + (copy.length + (i % original.length)));
+		copy[copy.length + (i % original.length)] = original[original.length + (i % original.length)];
 	    }
 	}
+	System.out.println(this);
 	return copy;
+    }
+
+    private boolean empty(){
+	return first == last && arr[iEq(first)] == null;
+    }
+
+    private int iEq(int i){
+	if(i % arr.length >= 0){
+	    return i % arr.length;
+	}else{
+	    return arr.length + (i % arr.length);
+	}
     }
 
     public void addFirst(String ele){
 	if(ele != null){
+	    if(empty()){
+		arr[iEq(first)] = ele;
+	    }else if(arr[iEq(first - 1)] == null){
+		arr[iEq(first - 1)] = ele;
+		first--;
+			     /*
 	    if(first - 1 < 0 && (first - 1) % arr.length == 0 && arr[0] == null){
 		arr[0] = ele;
 		first--;
@@ -41,6 +66,7 @@ public class MyDeque{
 	    }else if(first >= 0 && arr[(first - 1) % arr.length] == null){
 		arr[(first - 1) % arr.length] = ele;
 		first--;
+			     */
 	    }else{
 		arr = expand(arr);
 		addFirst(ele);
@@ -52,6 +78,12 @@ public class MyDeque{
 
     public void addLast(String ele){
 	if(ele != null){
+	    if(empty()){
+		arr[iEq(first)] = ele;
+	    }else if(arr[iEq(last + 1)] == null){
+		arr[iEq(last + 1)] = ele;
+		last++;
+	    /*
 	    if(last < 0 && arr[arr.length + (last % arr.length)] == null){
 		arr[arr.length + (last % arr.length)] = ele;
 	    }else if(last + 1 < 0 && arr[arr.length + ((last + 1) % arr.length)] == null){
@@ -62,6 +94,7 @@ public class MyDeque{
 	    }else if(last + 1 >= 0 && arr[(last + 1) % arr.length] == null){
 		arr[(last + 1) % arr.length] = ele;
 		last++;
+	    */
 	    }else{
 		arr = expand(arr);
 		addLast(ele);
@@ -71,16 +104,8 @@ public class MyDeque{
 	}
     }
 
-    private boolean isEmpty(){
-	if(first == last && arr[first] == null){
-	    return true;
-	}else{
-	    return false;
-	}
-    }
-
     public String removeFirst(){
-	if(!isEmpty()){
+	if(!empty()){
 	    String removed = "";
 	    if(first < 0){
 		removed = arr[arr.length + (first % arr.length)];
@@ -159,8 +184,11 @@ public class MyDeque{
 	System.out.println(test0.first + ":" + test0);
 	test0.addFirst("S");
 	System.out.println(test0.first + ":" + test0);
+	/*
+	
 	for(int i = 0; i < 4; i++){
 	    System.out.println(test0.removeFirst() + ":" + test0);
 	}
+	*/
     }
 }
