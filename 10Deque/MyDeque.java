@@ -12,6 +12,7 @@ public class MyDeque{
 	last = 0;
     }
 
+    /*
     private String[] expand(String[] original){
 	String[] copy = new String[original.length * 2];
 	System.out.println(last);
@@ -27,8 +28,23 @@ public class MyDeque{
 		copy[copy.length + (i % original.length)] = original[original.length + (i % original.length)];
 	    }
 	}
-	System.out.println(this);
+	System.out.println(this); //this is correct somehow even though it should not have been updated yet. On the other hand, copy is empty too/
+	for(String str : copy){
+	    System.out.println(str);
+	}
 	return copy;
+    }
+    */
+
+    private void expand(){
+	String[] copy = new String[arr.length * 2];
+	for(int i = first; i <= lastl; i++){
+	    if(iEq(i) < iEq(first)){
+		//copy[i 
+	    }else{
+		//
+	    }
+	}
     }
 
     private boolean empty(){
@@ -68,7 +84,8 @@ public class MyDeque{
 		first--;
 			     */
 	    }else{
-		arr = expand(arr);
+		//arr = expand(arr);
+		expand();
 		addFirst(ele);
 	    }
 	}else{
@@ -96,7 +113,8 @@ public class MyDeque{
 		last++;
 	    */
 	    }else{
-		arr = expand(arr);
+		//arr = expand(arr);
+		expand();
 		addLast(ele);
 	    }
 	}else{
@@ -183,7 +201,11 @@ public class MyDeque{
 	test0.addFirst("T");
 	System.out.println(test0.first + ":" + test0);
 	test0.addFirst("S");
-	System.out.println(test0.first + ":" + test0);
+	//for(String str : test0.arr){
+	//  System.out.println(str);
+	//}
+	//System.out.println(test0);
+	//System.out.println(test0.first + ":" + test0);
 	/*
 	
 	for(int i = 0; i < 4; i++){
