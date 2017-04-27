@@ -98,13 +98,19 @@ public class MyDeque{
     }
 
     public String getFirst(){
-
-	return "HONMAKA";
+	if(!empty()){
+	    return arr[iEq(first)];
+	}else{
+	    throw new NoSuchElementException("Deque is empty");
+	}
     }
 
     public String getLast(){
-
-	return "HONMAKA";
+	if(!empty()){
+	    return arr[iEq(last)];
+	}else{
+	    throw new NoSuchElementException("Deque is empty");
+	}
     }
 
     public String toString(){
@@ -154,9 +160,16 @@ public class MyDeque{
 	System.out.println(test0.last + ":" + test0);
 	test0.addLast("F");
 	System.out.println(test0.last + ":" + test0);
-	for(int i = 0; i < 15; i++){
+	System.out.println(test0.getFirst());
+	System.out.println(test0.getLast());
+	//for(int i = 0; i < 15; i++){
+	for(int i = 0; i < 14; i++){	    
 	    System.out.println(test0.first + " & " + test0.last);
 	    System.out.println(test0.removeLast() + " removed: " + test0);
+	    System.out.println(test0.getFirst());
+	    System.out.println(test0.getLast());
 	}
+	System.out.println(test0.getFirst());
+	System.out.println(test0.getLast());
     }
 }
