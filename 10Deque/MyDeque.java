@@ -12,33 +12,34 @@ public class MyDeque{
 	last = 0;
     }
 
-    /*
     private String[] expand(String[] original){
 	String[] copy = new String[original.length * 2];
-	System.out.println(last);
+	//System.out.println(last);
 	for(int i = first; i <= last; i++){
-	    if(iEq(i) < iEq(first)){
+	    /*
+	      if(iEq(i) < iEq(first)){
 	    
-		//if(i % original.length >= 0){
 		System.out.println(i + " -> " + (iEq(i)));
-		//copy[i % original.length] = original[i % original.length];
-		copy[iEq(i)] = original[iEq(i)];
+		//System.out.println(original[iEq(i)]);
+		copy[newIEq(i, copy)] = original[iEq(i)];
 	    }else{
 		System.out.println(i + " -> " + (original.length + (i % original.length)) + " -> " + (copy.length + (i % original.length)));
+		//System.out.println(original[original.length + (i % original.length)]);
 		copy[copy.length + (i % original.length)] = original[original.length + (i % original.length)];
 	    }
+	    */
+	    copy[newIEq(i, copy)] = original[iEq(i)];
 	}
-	System.out.println(this); //this is correct somehow even though it should not have been updated yet. On the other hand, copy is empty too/
-	for(String str : copy){
-	    System.out.println(str);
-	}
+	//System.out.println(this); //this is correct somehow even though it should not have been updated yet. On the other hand, copy is empty too
+	//for(String str : copy){ //no, the problem is that it's running twice.
+	//    System.out.println(str);
+	//}
 	return copy;
-    }
-    */
-
+    } 
+    
     private void expand(){
 	String[] copy = new String[arr.length * 2];
-	for(int i = first; i <= lastl; i++){
+	for(int i = first; i <= last; i++){
 	    if(iEq(i) < iEq(first)){
 		//copy[i 
 	    }else{
@@ -46,6 +47,7 @@ public class MyDeque{
 	    }
 	}
     }
+    
 
     private boolean empty(){
 	return first == last && arr[iEq(first)] == null;
@@ -59,14 +61,25 @@ public class MyDeque{
 	}
     }
 
+    private int newIEq(int i, String[] copy){
+	if(i % copy.length >= 0){
+	    return i % copy.length;
+	}else{
+	    return copy.length + (i % copy.length);
+	}
+    }
+
     public void addFirst(String ele){
 	if(ele != null){
+	    //System.out.println(first - 1 + " -> " + iEq(first - 1));
 	    if(empty()){
+		//System.out.println("OPT 1");
 		arr[iEq(first)] = ele;
 	    }else if(arr[iEq(first - 1)] == null){
+		//System.out.println("OPT 2 " + iEq(first - 1));
 		arr[iEq(first - 1)] = ele;
 		first--;
-			     /*
+		/*
 	    if(first - 1 < 0 && (first - 1) % arr.length == 0 && arr[0] == null){
 		arr[0] = ele;
 		first--;
@@ -82,10 +95,12 @@ public class MyDeque{
 	    }else if(first >= 0 && arr[(first - 1) % arr.length] == null){
 		arr[(first - 1) % arr.length] = ele;
 		first--;
-			     */
+		*/
 	    }else{
-		//arr = expand(arr);
-		expand();
+		//System.out.println("OPT 3");
+		arr = expand(arr);
+		//System.out.println("New Array Length: " + arr.length + this);
+		//expand();
 		addFirst(ele);
 	    }
 	}else{
@@ -113,8 +128,8 @@ public class MyDeque{
 		last++;
 	    */
 	    }else{
-		//arr = expand(arr);
-		expand();
+		arr = expand(arr);
+		//expand();
 		addLast(ele);
 	    }
 	}else{
@@ -205,7 +220,7 @@ public class MyDeque{
 	//  System.out.println(str);
 	//}
 	//System.out.println(test0);
-	//System.out.println(test0.first + ":" + test0);
+	System.out.println(test0.first + ":" + test0);
 	/*
 	
 	for(int i = 0; i < 4; i++){
