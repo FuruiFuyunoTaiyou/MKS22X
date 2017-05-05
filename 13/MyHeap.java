@@ -89,7 +89,7 @@ public class MyHeap{
 	heap[size] = s;
 	pushUp(size);
 	//---------------------------------------------------------------------
-	System.out.println(this.toStringTree());
+	//System.out.println(this.toStringTree());
 	//
     }
 
@@ -101,7 +101,7 @@ public class MyHeap{
 	    size--;
 	    pushDown(1);
 	    //-----------------------------------------------------------------
-	    System.out.println("removed: " + removed + " " + this.toStringTree());
+	    //System.out.println("removed: " + removed + " " + this.toStringTree());
 	    //
 	    return removed;
 	}else{
@@ -110,8 +110,11 @@ public class MyHeap{
     }
 
     public String peek(){
-
-	return "Vale!";
+	if(size > 0){
+	    return heap[1];
+	}else{
+	    throw new NoSuchElementException("The heap is empty.");
+	}
     }
 
     public String toString(){
@@ -153,10 +156,12 @@ public class MyHeap{
 	test.add("abc");
 	test.add("c");
 	test.add("d");
+	System.out.println(test.peek());
 	test.add("e");
 	System.out.println("-------------------------------------------------");
-	for(int i = 0; i < 13; i++){
+	for(int i = 0; i < 12; i++){
 	    test.remove();
 	}
+	System.out.println(test.peek());
     }
 }
