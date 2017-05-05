@@ -32,7 +32,7 @@ public class MyHeap{
 	heap = copy;
     }
 
-    private int childLI(int nodeI){ //what if the array is not large enough for children? or the node has no parent? I think it might be better to handle invalid values before/when using it.
+    private int childLI(int nodeI){ 
 	return 2 * nodeI;
     }
 
@@ -50,7 +50,7 @@ public class MyHeap{
 	heap[node2] = holder;
     }
 
-    private void pushUp(int nodeI){ //recursive, unless you want to modify nodeI
+    private void pushUp(int nodeI){ 
 	//only node w/o parent is the one with index 1 or when parent i is 0
 	if(nodeI != 1 && heap[nodeI].compareTo(heap[parent(nodeI)]) * constant > 0){
 	    swap(nodeI, parent(nodeI));
@@ -59,25 +59,9 @@ public class MyHeap{
     }
 
     private void pushDown(int nodeI){
-	//only node w/o child on left or right is if... childLI or childRI is > size
-	/*basically, switch with larger of two
-	cases/conditions:
-	no children []
-	one child (no R, but L)
-	- smaller []
-	- [child is] greater
-	two children
-	- both greater
-	- one greater
-	- both smaller []
-	- same number & greater (just switch with the greater or equal [first] one)
-	 */
 	if(childRI(nodeI) <= size){
 	    if(heap[nodeI].compareTo(heap[childRI(nodeI)]) * constant < 0 && heap[nodeI].compareTo(heap[childLI(nodeI)]) * constant < 0){
-	    //both children greater -> find greater-or-equal one
-		if(heap[childRI(nodeI)].compareTo(heap[childLI(nodeI)]) >= 0){
-		//if(heap[nodeI].compareTo(heap[childRI(nodeI)]) * constant < heap[nodeI].compareTo(heap[childLI(nodeI)]) * constant){
-		    //for children b & abc of parent a... Yes, a is smaller than both. I guess a is farther from abc than from b b/c a - b is -1, but a - abc might be -b. So instead, compare the children directly? then, b > abc.
+		if(heap[childRI(nodeI)].compareTo(heap[childLI(nodeI)]) * constant >= 0){
 		    swap(nodeI, childRI(nodeI));
 		    pushDown(childRI(nodeI));
 		}else{
@@ -85,11 +69,9 @@ public class MyHeap{
 		   pushDown(childLI(nodeI)); 
 		}
 	    }else if(heap[nodeI].compareTo(heap[childRI(nodeI)]) * constant < 0){
-	    //one child greater (R)
 		swap(nodeI, childRI(nodeI));
 		pushDown(childRI(nodeI));
 	    }else if(heap[nodeI].compareTo(heap[childLI(nodeI)]) * constant < 0){
-	    //other child greater (L)
 		swap(nodeI, childLI(nodeI));
 		pushDown(childLI(nodeI));
 	    }
@@ -99,7 +81,7 @@ public class MyHeap{
 	}
     }
 
-    public void add(String s){ //if it was a minHeap?
+    public void add(String s){
 	size++;
 	if(size >= heap.length){
 	    resize();
@@ -120,7 +102,7 @@ public class MyHeap{
 	    pushDown(1);
 	    //-----------------------------------------------------------------
 	    System.out.println("removed: " + removed + " " + this.toStringTree());
-	    // the problem is that yes, it pushes the new one down, but the swaps don't necessarily place the correct one in place. should swap with larger of two children [to be safe]
+	    //
 	    return removed;
 	}else{
 	    throw new NoSuchElementException("The heap is empty.");
@@ -149,9 +131,6 @@ public class MyHeap{
 	int i = 1;
 	for(int n = 0; i <= size; n++){
 	    for(int j = 0; j < Math.pow(2, n) && i <= size; j++, i++){
-		//-------------------------------------------------------------
-		//System.out.println(i + " " + this);
-		//
 	        printVer += heap[i] + " ";
 	    }
 	    printVer += "\n";
@@ -161,7 +140,7 @@ public class MyHeap{
 
 
     public static void main(String[] args){
-	MyHeap test = new MyHeap();
+	MyHeap test = new MyHeap(false);
 	System.out.println(test);
 	test.add("a");
 	test.add("b");
