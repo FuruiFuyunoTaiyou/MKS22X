@@ -2,9 +2,8 @@ import java.lang.Integer;
 
 
 public class RunningMedian{
-    Integer med;
-    MyHeap smaller;
-    MyHeap larger;
+    private MyHeap smaller;
+    private MyHeap larger;
 
 
     public RunningMedian(){
@@ -13,7 +12,7 @@ public class RunningMedian{
     }
 
     public void add(int val){
-
+	
     }
 
     public double getMedian(){
