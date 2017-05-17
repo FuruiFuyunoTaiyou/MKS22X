@@ -16,6 +16,14 @@ public class Location implements Comparable<Location>{
 	this.aStar = aStar;
     }
 
+    public int getRow(){
+	return row;
+    }
+
+    public int getCol(){
+	return col;
+    }
+
     public int getDistToStart(){
 	return distToStart;
     }
@@ -30,6 +38,10 @@ public class Location implements Comparable<Location>{
 	}else{
 	    return this.getDistToGoal() - lugar.getDistToGoal();
 	}
+    }
+
+    public int calcDistToStart(){ //probably need this and toGoal too
+	
     }
 
 
