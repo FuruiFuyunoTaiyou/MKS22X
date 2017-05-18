@@ -41,7 +41,7 @@ public class Location implements Comparable<Location>{
     }
 
     public int calcDistToStart(){ //probably need this and toGoal too
-	
+	return 100;
     }
 
 
