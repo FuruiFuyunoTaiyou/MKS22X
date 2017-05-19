@@ -1,21 +1,4 @@
 public class Quick{
-    /* quickselect using old part method
-    public static int quickselect(int[] data, int k){
-	int start = 0;
-	int end = data.length - 1;
-	while(true){
-	    int newPivotI = Partition.part(data, start, end);
-	    if(newPivotI > k){
-		end = newPivotI - 1;
-	    }else if(newPivotI < k){
-		start = newPivotI + 1;
-	    }else{
-		return data[newPivotI];
-	    }
-	}
-    }
-    */
-
     public static int quickselect(int[] data, int k){
 	int start = 0;
 	int end = data.length - 1;
@@ -31,7 +14,6 @@ public class Quick{
 	}
     }
 
-    
     public static void quicksort(int[] a){
 	qsh(a, 0, a.length - 1);
     }
@@ -42,16 +24,7 @@ public class Quick{
 	    qsh(ary, start, pivotIs[0] - 1);
 	    qsh(ary, pivotIs[1] + 1, end);
 	}
-    }
-
-    public static int[] testQuickSort(){
-	Random randgen = new Random();
-	for(int testNo = 0; testNo < 1000; testNo++){
-	    //int[] test = new int[Random.nextInt() * -1]; still need to randomize -1's exp
-	}
-    }
-    
-
+    }    
 
 
     public static void main(String[] args){
