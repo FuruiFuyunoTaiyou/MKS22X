@@ -81,6 +81,10 @@ public class MyHeap{
 	}
     }
 
+    public int getSize(){
+	return size;
+    }
+
     public void add(Integer s){
 	size++;
 	if(size >= heap.length){
@@ -88,9 +92,6 @@ public class MyHeap{
 	}
 	heap[size] = s;
 	pushUp(size);
-	//---------------------------------------------------------------------
-	//System.out.println(this.toStringTree());
-	//
     }
 
     public Integer remove(){
@@ -100,9 +101,6 @@ public class MyHeap{
 	    heap[size] = null;
 	    size--;
 	    pushDown(1);
-	    //-----------------------------------------------------------------
-	    //System.out.println("removed: " + removed + " " + this.toStringTree());
-	    //
 	    return removed;
 	}else{
 	    throw new NoSuchElementException("The heap is empty.");
@@ -143,26 +141,6 @@ public class MyHeap{
 
 
     public static void main(String[] args){
-	MyHeap test = new MyHeap(false);
-	System.out.println(test);
-	test.add(new Integer(0));
-	test.add(new Integer(1));
-	test.add(new Integer(3));
-	test.add(new Integer(2));
-	test.add(new Integer(4));
-	test.add(new Integer(0));
-	test.add(new Integer(4));
-	test.add(new Integer(3));
-	test.add(new Integer(1));
-	test.add(new Integer(5));
-	test.add(new Integer(2));
-	System.out.println(test.peek().intValue());
-	test.add(new Integer(0));
-	System.out.println(test);
-	System.out.println("-------------------------------------------------");
-	for(int i = 0; i < 12; i++){
-	    test.remove().intValue();
-	}
-	System.out.println(test.peek());
+	
     }
 }
