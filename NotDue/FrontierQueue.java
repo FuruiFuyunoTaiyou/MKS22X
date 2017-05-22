@@ -26,7 +26,7 @@ public class FrontierQueue implements Frontier{
     public String toString(){
 	String printVer = "";
 	for(Location l : frontier){
-	    printVer += "; " + l.getRow() + ", " + l.getCol() + "\n";
+	    printVer += "; " + l + "\n";
 	}
 	return printVer;
     }
