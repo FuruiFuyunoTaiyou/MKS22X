@@ -40,8 +40,8 @@ public class Location implements Comparable<Location>{
 	}
     }
 
-    public int calcDistToStart(){ //probably need this and toGoal too
-	return 100;
+    public String toString(){ //change this
+	return "(" + getRow() + ", " + getCol() + ")[" + getDistToGoal() + ", " + (getDistToStart() + getDistToGoal()) + "]";
     }
 
 
