@@ -88,7 +88,7 @@ public class MazeSolver{
 
     public String toString(){
 	if(animate){
-	    return board.toString(10);
+	    return board.toString(30);
 	}else{
 	    return board.toString();
 	}
