@@ -60,6 +60,9 @@ public class MazeSolver{
 	}
 	while(frontier.hasNext()){ //Will it stop if board searched?-----------
 	    //Yes, if there's nothing added, there won't be a frontier.next()--
+	    if(animate){
+		System.out.println(this);
+	    }
 	    Location TBExplored = frontier.next();
 	    if(!isEnd(TBExplored)){
 		board.set(TBExplored.getRow(), TBExplored.getCol(), '.');
@@ -92,7 +95,7 @@ public class MazeSolver{
     }
 
     public static void main(String[] args){
-	MazeSolver test = new MazeSolver("data1.txt");
+	MazeSolver test = new MazeSolver("data1.txt", true);
 	MazeSolver test1 = new MazeSolver("data2.txt");
 	MazeSolver test2 = new MazeSolver("data3.txt");
 	MazeSolver test3 = new MazeSolver("data4.txt");
