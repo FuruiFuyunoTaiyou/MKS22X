@@ -96,10 +96,10 @@ public class MazeSolver{
 
     public static void main(String[] args){
 	MazeSolver test = new MazeSolver("data1.txt", true);
-	MazeSolver test1 = new MazeSolver("data2.txt");
-	MazeSolver test2 = new MazeSolver("data3.txt");
-	MazeSolver test3 = new MazeSolver("data4.txt");
-	MazeSolver test4 = new MazeSolver("data5.txt");
+	MazeSolver test1 = new MazeSolver("data2.txt", true);
+	MazeSolver test2 = new MazeSolver("data3.txt", true);
+	MazeSolver test3 = new MazeSolver("data4.txt", true);
+	MazeSolver test4 = new MazeSolver("data5.txt", true);
 	System.out.println(test);
 	test.solve(3);
 	System.out.println(test);
