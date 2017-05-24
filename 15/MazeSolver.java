@@ -58,8 +58,8 @@ public class MazeSolver{
 	    frontier = new FrontierPriorityQueue(); 
 	    frontier.add(new Location(mazeStart.getRow(), mazeStart.getCol(), null, 0, calcDistToGoal(mazeStart.getRow(), mazeStart.getCol()), true));
 	}
-	while(frontier.hasNext()){ //Will it stop if board searched?-----------
-	    //Yes, if there's nothing added, there won't be a frontier.next()--
+	boolean done = false;
+	while(frontier.hasNext() && !done){ 
 	    if(animate){
 		System.out.println(this);
 	    }
@@ -80,6 +80,7 @@ public class MazeSolver{
 		//-------------------going back to start-----------------------
 		pathPart = pathPart.getPrevious();
 		board.set(pathPart.getRow(),pathPart.getCol(), 'S');
+		done = true;
 	    }
 	}
 	//--------------------------what to do at end?-------------------------
@@ -88,18 +89,18 @@ public class MazeSolver{
 
     public String toString(){
 	if(animate){
-	    return board.toString(30);
+	    return board.toString(40);
 	}else{
 	    return board.toString();
 	}
     }
 
     public static void main(String[] args){
-	MazeSolver test = new MazeSolver("data1.txt", true);
-	MazeSolver test1 = new MazeSolver("data2.txt", true);
-	MazeSolver test2 = new MazeSolver("data3.txt", true);
-	MazeSolver test3 = new MazeSolver("data4.txt", true);
-	MazeSolver test4 = new MazeSolver("data5.txt", true);
+	MazeSolver test = new MazeSolver("data1.txt"/*, true*/);
+	MazeSolver test1 = new MazeSolver("data2.txt"/*, true*/);
+	MazeSolver test2 = new MazeSolver("data3.txt"/*, true*/);
+	//MazeSolver test3 = new MazeSolver("data4.txt"/*, true*/);
+	//MazeSolver test4 = new MazeSolver("data5.txt"/*, true*/);
 	System.out.println(test);
 	test.solve(3);
 	System.out.println(test);
@@ -108,12 +109,12 @@ public class MazeSolver{
 	System.out.println(test1);
 	System.out.println(test2);
 	test2.solve(3);
-	System.out.println(test2);
+	System.out.println(test2);/*
 	System.out.println(test3);
 	test3.solve(3);
 	System.out.println(test3);
 	System.out.println(test4);
 	test4.solve(3);
-	System.out.println(test4);
+	System.out.println(test4);*/
     }
 }
