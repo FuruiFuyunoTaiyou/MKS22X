@@ -36,6 +36,10 @@ public class Location implements Comparable<Location>{
 	return distToGoal;
     }
 
+    public boolean getAStar(){
+	return aStar;
+    }
+
     public int compareTo(Location lugar){
 	if(aStar){
 	    return (this.getDistToStart() + this.getDistToGoal()) - (lugar.getDistToStart() + lugar.getDistToGoal());
